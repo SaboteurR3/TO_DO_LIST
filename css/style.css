@@ -12,7 +12,7 @@ body {
     background: rgb(18,34,53);
     background: linear-gradient(180deg, rgba(18,34,53,1) 0%, rgba(70,70,102,1) 32%, rgba(60,130,144,1) 100%);
 }
-.container {
+.main {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -31,7 +31,7 @@ body {
     font-family: 'Philosopher', sans-serif;
     font-size: 20px;
 }
-.header{
+.head{
     width: 450px;
     height:260px;
     background-image: url('../img/0935bae07668fd4bed92facdf54f0492.gif');
@@ -63,17 +63,17 @@ body {
     color: #FFF;
     font-size: 25px;
 }
-.content{
+.main-content{
     width:450px;
     height: 350px;
     max-height:350px;
     background-color: #FFF;
     overflow: auto;
 }
-.content::-webkit-scrollbar { 
+.main-content::-webkit-scrollbar { 
     display: none; 
 }
-.content ul{
+.main-content ul{
     padding:0;
     margin:0;
 }

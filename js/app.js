@@ -10,25 +10,25 @@ const UNCHECK = "fa-circle-thin";
 const LINE_THROUGH = "lineThrough";
 
 // Vareialbes for items
-let LIST;
+let myList;
 let id;
 
 let data = localStorage.getItem("TODO");
 
 // check if data is not empty
 if(data) {
-    LIST = JSON.parse(data);
-    id = LIST.length;
-    loadList(LIST); 
+    myList = JSON.parse(data);
+    id = myList.length;
+    loadList(myList); 
 } else {
-    LIST = [];
+    myList = [];
     id = 0;
 }
 
 // load items 
 function loadList(array){
     array.forEach(function(item){
-        addToDo(item.name, item.id, item.done, item.trash);
+        addToDoList(item.name, item.id, item.done, item.trash);
     });
 }
 
@@ -39,12 +39,12 @@ clear.addEventListener("click", function() {
 });
 
 // for todays date
-const today = new Date();
+const varToday = new Date();
 const myOptions =  {weekday: "long", month: "short", day: "numeric" };
-dateElement.innerHTML = today.toLocaleDateString("en-US", myOptions);
+dateElement.innerHTML = varToday.toLocaleDateString("en-US", myOptions);
 
 //add to do
-function addToDo(toDo, id, done, trash) {
+function addToDoList(toDo, id, done, trash) {
     // if item is deleted function will stop execution
     if(trash) {
         return;
@@ -63,20 +63,20 @@ function addToDo(toDo, id, done, trash) {
     list.insertAdjacentHTML(position, item);
 }
 // add an item (enter key)
-document.addEventListener("keyup", function(even){
-    if(event.keyCode == 13){
+document.addEventListener("keyup", function(even) {
+    if(event.keyCode == 13) { // if user press "Enter"
         const toDo = input.value;
         // check if input value is empty
         if(toDo){
-            addToDo(toDo, id, false, false);
-            LIST.push({
+            addToDoList(toDo, id, false, false);
+            myList.push({
                 name : toDo,
                 id: id,
                 done: false,
                 trash: false
             });
             //add item to localstorage
-            localStorage.setItem("TODO", JSON.stringify(LIST));
+            localStorage.setItem("TODO", JSON.stringify(myList));
 
             // increment id for next item
             id++;
@@ -92,24 +92,24 @@ function completeToDo(element) {
     element.classList.toggle(UNCHECK);
     element.parentNode.querySelector(".text").classList.toggle(LINE_THROUGH);
     // update an array
-    LIST[element.id].done = LIST[element.id].done ? false : true;
+    myList[element.id].done = myList[element.id].done ? false : true;
 }
 
 // remove toDo
 function removeToDo(element) {
     element.parentNode.parentNode.removeChild(element.parentNode);
-    LIST[element.id].trash = true;
+    myList[element.id].trash = true;
 }
 
 // event listener for items
 list.addEventListener("click", function(event) {
     const element = event.target; 
     const elementJob = element.attributes.job.value; 
-    if(elementJob == "complete"){
+    if(elementJob == "complete") {
         completeToDo(element);
-    }else if(elementJob == "delete"){
+    }else if(elementJob == "delete") {
         removeToDo(element);
     }
     // add item to localstorage 
-    localStorage.setItem("TODO", JSON.stringify(LIST));
+    localStorage.setItem("TODO", JSON.stringify(myList));
 })
