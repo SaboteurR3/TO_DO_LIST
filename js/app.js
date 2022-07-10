@@ -3,6 +3,12 @@ const clear = document.querySelector(".clear");
 const dateElement = document.getElementById("date");
 const list = document.getElementById("list");
 const input = document.getElementById("input");
+const add = document.querySelector(".fa-plus-circle").addEventListener("click", myFunction);
+
+// myFunction for alert
+function myFunction() {
+    alert("Press 'Enter' button <3");
+}
 
 // CHECK, UNCHECK, LINE_THROUGH
 const CHECK = "fa-check-circle";
@@ -64,10 +70,10 @@ function addToDoList(toDo, id, done, trash) {
 }
 // add an item (enter key)
 document.addEventListener("keyup", function(even) {
-    if(event.keyCode == 13) { // if user press "Enter"
+    if(event.keyCode == 13 || add == "true") { // if user press "Enter"
         const toDo = input.value;
         // check if input value is empty
-        if(toDo){
+        if(toDo) {
             addToDoList(toDo, id, false, false);
             myList.push({
                 name : toDo,
