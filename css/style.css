@@ -170,9 +170,10 @@ body {
 }
 @media (max-width: 430px) {
     .main {
-        top: 20%;
-        left: 12%;
-        transform: translate(-10%, -10%);
+        width: 250px;
+    }
+    .item {
+        width: 300px;
     }
     .head {
         width: 300px;
@@ -187,5 +188,7 @@ body {
         width: 280px;
         height:30px;
     }
-
+    #input {
+        width: 220px;
+    }
 }
